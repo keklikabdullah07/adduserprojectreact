@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
+import Form from "./Form";
+import CardContainer from "./CardContainer";
+
+export default function App() {
+  const [check, setCheck] = useState(false);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [age, setAge] = useState("");
+  const [employeeList, setEmployeeList] = useState([]);
+  const [id, setId] = useState(0);
+  const [editStatus, setEditStatus] = useState(false);
+
+  const formStates = {
+    name,
+    setName,
+    surname,
+    setSurname,
+    email,
+    setEmail,
+    age,
+    setAge,
+    employeeList,
+    setEmployeeList,
+    editStatus,
+    setEditStatus,
+    id,
+  };
+
+  const cardContainerStates = {
+    setName,
+    setSurname,
+    setEmail,
+    setAge,
+    employeeList,
+    setEmployeeList,
+    setEditStatus,
+    setId,
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container w-50">
+      <div className=" container text-center ">
+        <label className="my-4 mx-3 ">Sözleşme Koşullarını Kabul Et?</label>
+        <input
+          type="checkbox"
+          defaultChecked={check}
+          onChange={() => setCheck(!check)}
+        ></input>
+        
+
+        {check && <Form formStates={formStates} />}
+        <CardContainer cardContainerStates={cardContainerStates} />
+      </div>
     </div>
   );
 }
-
-export default App;
